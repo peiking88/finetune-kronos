@@ -1,0 +1,15 @@
+{
+  "eval_id": 0,
+  "prompt": "我电脑上装了通达信，本地 .day 数据已经下到 ~/.local/share/tdxcfv/drive_c/tc/vipdoc/sh/lday 这边。RTX 4060 Laptop 8G 显存。我想用这些数据 fine-tune Kronos 模型来做 A 股短线预测，从环境装起一直跑到能预测上证指数那一步。请告诉我完整步骤，每步要敲什么命令、什么时候应该看到什么输出文件以及大小，OOM 之类的常见坑怎么处理。",
+  "expected_output": "技能触发，给出 Step 1-4 的完整命令序列；明确 venv 与 HF_ENDPOINT 的设置方式；说明 Tokenizer ~5GB / Predictor ~6.3GB 的显存占用与 OOM 时的回退参数；给出每步产物体积量级供验证。",
+  "assertions": [
+    {"id": "A0-1", "type": "contains", "claim": "包含 venv 创建和 HF_ENDPOINT=https://hf-mirror.com 配置步骤", "required": true},
+    {"id": "A0-2", "type": "contains", "claim": "包含 tdx_import.py 或 discover_stocks.py 数据导入命令", "required": true},
+    {"id": "A0-3", "type": "contains", "claim": "包含 train_tokenizer_tdx.py 和 train_predictor_tdx.py 训练命令", "required": true},
+    {"id": "A0-4", "type": "contains", "claim": "说明 Tokenizer 显存约 5GB、Predictor 显存约 6.3GB", "required": true},
+    {"id": "A0-5", "type": "contains", "claim": "包含 OOM 处理建议（减小 batch_size 或增加 accumulation）", "required": true},
+    {"id": "A0-6", "type": "contains", "claim": "包含输出文件大小量级（如 train_data.pkl ~100MB）", "required": false},
+    {"id": "A0-7", "type": "contains", "claim": "包含 predict_sse.py 预测验证步骤", "required": true},
+    {"id": "A0-8", "type": "contains", "claim": "提到后复权 (back/hfq) 作为复权方式", "required": false}
+  ]
+}

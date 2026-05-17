@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "prompt": "上次微调了一半训练机重启了，Tokenizer 那个 best_model 存下来了在 outputs/tdx_finetune/tdx_tokenizer/checkpoints/best_model 里，但 Predictor 还没跑完。现在想从头继续 Predictor 这一段，命令该怎么写? 还要重新跑 Tokenizer 吗?",
+  "expected_output": "技能触发；明确说明 Tokenizer 不需要重跑，直接执行 train_predictor_tdx.py 并通过 --tokenizer-path 指向已保存的 best_model 即可；给出完整命令。",
+  "assertions": [
+    {"id": "A1-1", "type": "contains", "claim": "明确说明 Tokenizer 不需要重新训练", "required": true},
+    {"id": "A1-2", "type": "contains", "claim": "给出 train_predictor_tdx.py 命令", "required": true},
+    {"id": "A1-3", "type": "contains", "claim": "命令包含 --tokenizer-path 参数指向已保存的 best_model", "required": true},
+    {"id": "A1-4", "type": "contains", "claim": "路径指向 outputs/tdx_finetune/tdx_tokenizer/checkpoints/best_model", "required": true},
+    {"id": "A1-5", "type": "contains", "claim": "包含 --data-dir 参数", "required": false}
+  ]
+}

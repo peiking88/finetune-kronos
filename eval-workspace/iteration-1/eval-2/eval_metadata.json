@@ -1,0 +1,15 @@
+{
+  "eval_id": 2,
+  "prompt": "把项目从 ~/financial/Kronos 整个挪到 ~/peiking88/Kronos 之后，source .venv/bin/activate 之后 pip 直接报 bad interpreter，python -c 'import torch' 也跑不起来。模型加载还会冒一句 missing N required positional arguments。怎么修?",
+  "expected_output": "技能触发『环境重建 / 项目迁移』章节；指出 venv 的 shebang 指向旧路径 + HF_ENDPOINT 未生效是两个独立症状；给出 rm -rf .venv → 重建 → 写入 HF_ENDPOINT → 重装依赖的修复序列。",
+  "assertions": [
+    {"id": "A2-1", "type": "contains", "claim": "识别出 bad interpreter 是因为 venv shebang 指向旧路径", "required": true},
+    {"id": "A2-2", "type": "contains", "claim": "识别出 missing N required positional arguments 是因为 HF_ENDPOINT 未生效", "required": true},
+    {"id": "A2-3", "type": "contains", "claim": "给出 rm -rf .venv 删除旧 venv 的步骤", "required": true},
+    {"id": "A2-4", "type": "contains", "claim": "给出 python3 -m venv .venv 重建步骤", "required": true},
+    {"id": "A2-5", "type": "contains", "claim": "包含写入 HF_ENDPOINT=https://hf-mirror.com 到 activate 脚本", "required": true},
+    {"id": "A2-6", "type": "contains", "claim": "包含 pip install -r requirements.txt 重装依赖步骤", "required": true},
+    {"id": "A2-7", "type": "contains", "claim": "包含 pip install -e tdxdata/ 安装 tdxdata 步骤", "required": true},
+    {"id": "A2-8", "type": "contains", "claim": "给出修复后的验证命令（如 python -c import torch）", "required": false}
+  ]
+}

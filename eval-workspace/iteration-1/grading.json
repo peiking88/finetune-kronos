@@ -1,0 +1,30 @@
+{
+  "iteration": 1,
+  "summary": {
+    "with_skill": {"pass": 3, "fail": 0, "total": 3},
+    "without_skill": {"pass": 1, "fail": 2, "total": 3}
+  },
+  "evals": [
+    {
+      "eval_id": 0,
+      "scenario": "全流程",
+      "with_skill": {"result": "PASS", "required_passed": 6, "required_total": 6, "optional_passed": 2, "optional_total": 2},
+      "without_skill": {"result": "FAIL", "required_passed": 0, "required_total": 6, "optional_passed": 0, "optional_total": 2},
+      "notes": "baseline 将 Kronos 误认为 AWS PatchTST，从零构建完全不同的流程"
+    },
+    {
+      "eval_id": 1,
+      "scenario": "中断恢复",
+      "with_skill": {"result": "PASS", "required_passed": 4, "required_total": 4, "optional_passed": 1, "optional_total": 1},
+      "without_skill": {"result": "PASS", "required_passed": 4, "required_total": 4, "optional_passed": 1, "optional_total": 1},
+      "notes": "baseline 非纯净：读取了项目文件，实际不应算真实 baseline"
+    },
+    {
+      "eval_id": 2,
+      "scenario": "环境迁移",
+      "with_skill": {"result": "PASS", "required_passed": 7, "required_total": 7, "optional_passed": 1, "optional_total": 1},
+      "without_skill": {"result": "FAIL", "required_passed": 4, "required_total": 7, "optional_passed": 0, "optional_total": 1},
+      "notes": "baseline 缺少 HF_ENDPOINT 配置、tdxdata 安装、missing args 根因分析"
+    }
+  ]
+}
